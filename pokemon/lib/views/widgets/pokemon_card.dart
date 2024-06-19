@@ -51,7 +51,21 @@ class PokemonCard extends ConsumerWidget {
     return Skeletonizer(
       enabled: isLoading,
       child: Card(
-        child: Center(child: Text(pokemon?.name ?? 'No Name')),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            CircleAvatar(
+              backgroundImage: pokemon?.sprites?.frontDefault == null
+                  ? null
+                  : NetworkImage(
+                      pokemon!.sprites!.frontDefault!,
+                    ),
+              maxRadius: 35,
+            ),
+            Text(pokemon?.name ?? 'No Name'),
+          ],
+        ),
       ),
     );
   }
